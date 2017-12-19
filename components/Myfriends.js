@@ -4,11 +4,12 @@ View,
 Text, 
 ListView, 
 StyleSheet, 
-TouchableOpacity } from 'react-native';
+TouchableOpacity, 
+Modal} from 'react-native';
 
-export default class Setting extends React.Component{
+export default class Myfriends extends React.Component{
     static navigationOptions = {
-        tabBarLabel:'Setting'
+        tabBarLabel:'My Friends',
     }
     constructor(props){
         super(props);

@@ -35,7 +35,7 @@ export default class Login extends Component{
     login(){
         if(this.state.username==user&&this.state.password==pass){
             this.props.navigation.navigate(
-                'HelloScreen',
+                'HomeScreen',
                 {
                     name: this.state.username
                 }

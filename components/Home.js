@@ -8,16 +8,19 @@ Image,
 ScrollView,
 TouchableOpacity,
 ToolbarAndroid,
-Picker
+Picker,
 } from 'react-native';
 import { TabNavigator } from 'react-navigation';
 import TabBar from '../components/Tabbar.js';
 
-
 export default class Home extends React.Component{
+
     constructor(props){
         super(props);
+        this.state = {
+        }
     }
+
 
     render(){
         return(
@@ -38,9 +41,6 @@ export default class Home extends React.Component{
 
                     </View>
                 </View>
-                {/* child2 */}
-                {/* <View style={styleHome.child2}>  
-                </View> */}
                 {/* child3 */}
                 <View style={styleHome.child3}>
                     <TabBar/>
@@ -48,6 +48,7 @@ export default class Home extends React.Component{
             </View>
         );
     }
+
 }
 
 const styleHome = StyleSheet.create({

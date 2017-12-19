@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 import { View } from 'react-native';
 import { TabNavigator } from 'react-navigation';
 import Myblog from '../components/Myblog.js';
-import Setting from '../components/Setting.js';
+import Myfriends from '../components/Myfriends.js';
 
 const tabBar = TabNavigator(
     {
         MyblogScreen:{
             screen: Myblog
         },
-        SettingScreen:{
-            screen: Setting
+        MyfriendsScreen:{
+            screen: Myfriends
         }
     },{
         tabBarPosition:'top',        
