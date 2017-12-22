@@ -5,41 +5,65 @@ StyleSheet,
 Image, 
 ScrollView,
 Text,
-TouchableWithoutFeedback} from 'react-native';
+TouchableWithoutFeedback,
+TouchableNativeFeedback,
+FlatList,
+ActivityIndicator} from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome'
+
+
 
 export default class ModalComment extends React.Component{
 
     constructor(props){
         super(props);
-        this.state = {}
+        this.state = {
+            datas :[],
+            animated:true,
+            heightAI:30,
+        }
+    }
+
+    fetchData(){
+        fetch('http://travellingdn.herokuapp.com/api/location/0'+this.props.navigation.state.params.name)
+        .then((response) => response.json())
+        .then((responseJson) => {
+            this.setState({
+                datas: responseJson.description,
+                animated:false,
+                heightAI:0
+            });
+        }).done()
+    }
+
+    componentDidMount(){
+        this.fetchData();
     }
 
     render(){
+        let pic = {
+            url:'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg'
+        };
         return (
             <View style={styleModal.body}>
-                <TouchableWithoutFeedback>
-                    <View></View>
-                </TouchableWithoutFeedback>
-                <ScrollView>
-                    <View style={styleModal.bodyComment}>
-                        <View style={styleModal.bodyAvatar}>
-                            <Image style={styleModal.avatar} source={require('../images/tina.jpg')}/>
+                <View style={{height:this.state.heightAI}}>
+                   <ActivityIndicator size='large' color='white' animating={this.state.animated}/>
+                </View>
+                {/* <FlatList 
+                    data={this.state.datas}
+                    renderItem={({item})=> */}
+                        <View style={styleModal.bodyComment}>
+                            <View style={styleModal.bodyAvatar}>
+                                {/* <Image style={styleModal.avatar} source={require('../images/tina.jpg')}/> */}
+                            </View>
+                            <View style={styleModal.content}>
+                                <Text style={styleModal.name}>Tina :</Text> 
+                                <Text style={styleModal.text}>{this.state.datas}</Text>
+                            </View>
                         </View>
-                        <View style={styleModal.content}>
-                            <Text style={styleModal.name}>Tina :</Text> 
-                            <Text style={styleModal.text}>Tại hạ tình cờ đi ngang qua chốn này! Thấy các vị huynh đệ cùng các tỉ muội xôn xao bàn tán bèn mạn phép ghé vào cho thỏa lòng soi mói. Giật mình, kinh ngạc khi thấy lời nói của các vị vô cùng sắc bén, ngữ ngôn truyền cảm, thiết nghĩ Độc Cô Cầu Bại ngày xưa có đội mồ sống dậy cũng thêm phần nể sợ. Nay xuất hiện thêm nhiều anh hùng bàn phím như thế này cũng khiến cho tại hạ mở mang tầm mắt, học hỏi được nhiều điều. Nếu các vị huynh đệ đây không cảm thấy phiền nhiễu thì với một cú Click chuột chúng ta hãy kết nghĩa bàn thờ, à không bàn đào! Ngày hôm nay được gặp các vị huynh đệ, các vị tỉ muội ở đây cũng là phước phần cho tại hạ. Xin nhận của tại hạ một like gọi là để kết nghĩa thâm giao!</Text>
-                        </View>
-                    </View>
-                    <View style={styleModal.bodyComment}>
-                        <View style={styleModal.bodyAvatar}>
-                            <Image style={styleModal.avatar} source={require('../images/tina.jpg')}/>
-                        </View>
-                        <View style={styleModal.content}>
-                            <Text style={styleModal.name}>Tina :</Text> 
-                            <Text style={styleModal.text}>Tại hạ tình cờ đi ngang qua chốn này! Thấy các vị huynh đệ cùng các tỉ muội xôn xao bàn tán bèn mạn phép ghé vào cho thỏa lòng soi mói. Giật mình, kinh ngạc khi thấy lời nói của các vị vô cùng sắc bén, ngữ ngôn truyền cảm, thiết nghĩ Độc Cô Cầu Bại ngày xưa có đội mồ sống dậy cũng thêm phần nể sợ. Nay xuất hiện thêm nhiều anh hùng bàn phím như thế này cũng khiến cho tại hạ mở mang tầm mắt, học hỏi được nhiều điều. Nếu các vị huynh đệ đây không cảm thấy phiền nhiễu thì với một cú Click chuột chúng ta hãy kết nghĩa bàn thờ, à không bàn đào! Ngày hôm nay được gặp các vị huynh đệ, các vị tỉ muội ở đây cũng là phước phần cho tại hạ. Xin nhận của tại hạ một like gọi là để kết nghĩa thâm giao!</Text>
-                        </View>
-                    </View>
-                </ScrollView>
+                    {/* }
+                    keyExtractor = {(item,index)=>index}
+                />  */}
             </View>
         );
     }
@@ -49,17 +73,18 @@ const styleModal = StyleSheet.create({
     body:{
         flex:1,
         // justifyContent:'center',
+        // alignItems:'center',
         backgroundColor:'#BBDEFB',
     },
     bodyComment:{
-        width:'100%',
+        width:'97%',
         // height:'100%',
         flex:1,
         flexDirection:'row',
         backgroundColor:'white',
-        margin:1,
-        marginTop:3,
-        borderRadius:15,
+        margin:5,
+        marginTop:1,
+        // borderRadius:15,
     },
     bodyAvatar:{
         flex:1,
@@ -84,5 +109,20 @@ const styleModal = StyleSheet.create({
         fontWeight:'bold',
     },
     text:{
+    },
+    touchReturn:{
+        width:'100%',
+        borderBottomWidth:3,
+        borderBottomColor:'#BBDEFB',
+        borderTopColor:'black',
+        borderTopWidth:0.6,
+        height:50,
+        backgroundColor:'steelblue'
+    },
+    textReturn:{
+        padding:13,
+        fontSize:15,
+        color:'white',
+        fontWeight:'bold'
     }
 });

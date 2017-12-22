@@ -12,7 +12,7 @@ Picker,
 } from 'react-native';
 import { TabNavigator } from 'react-navigation';
 import TabBar from '../components/Tabbar.js';
-
+import Icon from 'react-native-vector-icons/FontAwesome';
 export default class Home extends React.Component{
 
     constructor(props){
@@ -34,22 +34,35 @@ export default class Home extends React.Component{
                     <View style={styleHome.leftChild1}>
                         <Image
                             style={styleHome.image} 
-                            source={require('../images/avatar.jpg')}
+                            // source={require('../images/avatar.jpg')}
                         />
                     </View>
                     <View style={styleHome.rightChild1}>
-
+                        <Text style={[styleHome.textName,{
+                            fontSize:20, borderBottomWidth:0.6, 
+                            borderBottomColor:'white',}]}>
+                            Long (Lewis) N.B.TRAN
+                        </Text>
+                        <View style={{flex:1,flexDirection:'row',justifyContent:'space-around',marginTop:15,}}>
+                            <Text style={[styleHome.textName,{fontSize:20,}]}>
+                                10k <Icon name='heart' style={{fontSize:23,color:'#F5F5F5'}}/>
+                            </Text>
+                            <Text style={[styleHome.textName,{fontSize:20,}]}>
+                                10k <Icon name='users' style={{fontSize:23,color:'#F5F5F5'}}/>
+                            </Text>
+                        </View>
                     </View>
                 </View>
                 {/* child3 */}
                 <View style={styleHome.child3}>
-                    <TabBar/>
+                    <TabBar navigation={this.props.navigation}/>
                 </View>
             </View>
         );
     }
-
 }
+
+Home.router =  TabBar.router;
 
 const styleHome = StyleSheet.create({
     body:{
@@ -107,5 +120,11 @@ const styleHome = StyleSheet.create({
         flexDirection:'column',
         justifyContent:'space-between',
         marginTop:0.5,
+    },
+    textName:{
+        marginTop:15,
+        marginRight:5,
+        color:'#F5F5F5',
+        fontWeight:'bold'
     }
 });

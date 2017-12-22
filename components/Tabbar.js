@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
 import { TabNavigator } from 'react-navigation';
-import Myblog from '../components/Myblog.js';
+import Myblog from '../components/MyBlog2.js';
 import Myfriends from '../components/Myfriends.js';
 
 const tabBar = TabNavigator(

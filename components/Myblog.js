@@ -6,22 +6,15 @@ Text,
 ScrollView, 
 TouchableWithoutFeedback,
 Modal,
-Alert
+Alert,
+FlatList,
+ListView
 } from 'react-native';
 // import ModalComment from '../components/ModalComment.js';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { NavigationActions } from 'react-navigation'
+// import { NavigationActions } from 'react-navigation'
 // import Ionicons from 'react-native-vector-icons/Ionicons';
 // import Entypo from 'react-native-vector-icons/Entypo';
-
-const navigateAction = NavigationActions.navigate({
-    
-      routeName: 'MyBlogScreen',
-    
-      params: {},
-    
-      action: NavigationActions.navigate({ routeName: 'ModalScreen'})
-    })
 
 export default class Myblog extends React.Component{
     static navigationOptions = {
@@ -31,68 +24,84 @@ export default class Myblog extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            row: [],
+            dataSource: new ListView.DataSource({rowHasChanged: (r1,r2)=>r1!==r2}),
             color:'#EF9A9A',
         };
     }
 
-    // componentWillMount(){
-    //     return fetch('http://travellingdn.herokuapp.com/api/location/0402')
-    //     .then(response => response.json())
-    //     .then(responseJson => {
-    //         this.setState({
-    //             row: responseJson.locationID
-    //         });
-    //     })
-    //     .catch(error => {
-    //         console.error(error)
-    //         this.setState({
-    //            color:'red', 
-    //         });
-    //     });
-    // }
+    fetchData(){
+        fetch('http://travellingdn.herokuapp.com/api/location', {method: "GET", body: null})
+        .then((response)=>response.json())
+        .then((responseData)=>{
+            this.setState({
+                dataSource: this.state.dataSource.cloneWithRows(responseData),
+            });
+        })
+        .done()
+    }
+
+    componentDidMount(){
+        this.fetchData();
+    }
     
+    renderRaw(content){
+        return(
+            <View style={styleBlog.body}>
+            <View style={styleBlog.content}>
+                <View style={styleBlog.viewText}>
+                    <Text style={styleBlog.textStatus}>{content.description}</Text>
+                </View>
+                <View style={styleBlog.viewIcon}>
+                    <TouchableWithoutFeedback
+                        onPress={()=>this.like()}>
+                        <View>
+                            <Text style={styleBlog.textNumber}>
+                                10k <Icon name='heart' 
+                                        style={[styleBlog.textIcon,{color:'#EF9A9A'}]}
+                                />
+                            </Text>
+                        </View>
+                    </TouchableWithoutFeedback>
+                    <TouchableWithoutFeedback
+                        onPress={()=>this.props.navigation.navigate('ModalComment')}>
+                        <View>
+                            <Text style={styleBlog.textNumber}>
+                                10k <Icon name='comment-o' 
+                                        style={[styleBlog.textIcon,{color:'black'}]}/>
+                            </Text>
+                        </View>
+                    </TouchableWithoutFeedback>
+                    <TouchableWithoutFeedback
+                        onPress={()=>this.openAlert()}>
+                        <View>
+                            <Text style={styleBlog.textNumber}>
+                                10k <Icon name='share' 
+                                        style={[styleBlog.textIcon,{color:'steelblue'}]}/>
+                            </Text>
+                        </View>
+                    </TouchableWithoutFeedback>
+                </View>
+            </View>
+        </View>
+        );
+    }
+
     render(){
         return(
-            <ScrollView style={styleBlog.scroll}>
-                <View style={styleBlog.body}>
-                    <View style={styleBlog.content}>
-                        <View style={styleBlog.viewText}>
-                            <Text style={styleBlog.textStatus}>Nằm cách trung tâm thành phố Ðà Nẵng chừng 10 km về hướng Ðông Bắc. Đây được xem là viên ngọc quý của Đà Nẵng với vẻ đẹp mê hoặc lòng người.Quận Sơn Trà có bán đảo Sơn Trà và núi Sơn Trà đẹp nổi tiếng, 4400 ha được công nhận là khu vực bảo tồn thiên nhiên vào năm 1992. Ở đây có chùa Linh Ứng, cũng là nơi có các căn cứ Hải quân Nhân dân Việt Nam quan trọng. Quận Sơn Trà có cảng Tiên Sa và đường Bạch Đằng Đông ven sông cũng nổi tiếng không kém.</Text>
-                        </View>
-                        <View style={styleBlog.viewIcon}>
-                            <TouchableWithoutFeedback
-                                onPress={()=>this.like()}>
-                                <View>
-                                    <Text style={styleBlog.textNumber}>
-                                        10k <Icon name='heart' 
-                                                style={[styleBlog.textIcon,{color:this.state.color}]}
-                                        />
-                                    </Text>
-                                </View>
-                            </TouchableWithoutFeedback>
-                            <TouchableWithoutFeedback
-                                onPress={()=>this.props.navigation.navigate('ModalComment')}>
-                                <View>
-                                    <Text style={styleBlog.textNumber}>
-                                        10k <Icon name='comment-o' 
-                                                style={[styleBlog.textIcon,{color:'black'}]}/>
-                                    </Text>
-                                </View>
-                            </TouchableWithoutFeedback>
-                            <TouchableWithoutFeedback
-                                onPress={()=>this.openAlert()}>
-                                <View>
-                                    <Text style={styleBlog.textNumber}>
-                                        10k <Icon name='share' 
-                                                style={[styleBlog.textIcon,{color:'steelblue'}]}/>
-                                    </Text>
-                                </View>
-                            </TouchableWithoutFeedback>
-                        </View>
-                    </View>
-                </View>
-            </ScrollView>
+            // <ScrollView style={styleBlog.scroll}>
+            // <FlatList
+            //     data={this.state.row}
+            //     renderItem={({item})=>
+                    
+            //     }
+            // />
+            <View style={{flex:1}}>
+                <FlatList
+                    data={this.state.dataSource}
+                    renderItem={this.renderRaw}
+                />  
+            </View>    
+            // </ScrollView>
         );
     }
 
@@ -108,13 +117,6 @@ export default class Myblog extends React.Component{
         }
     }
 
-    closeModal(){
-        
-    }
-
-    openModal(){
-        this.props.navigation.dispatch(navigateAction);
-    }
 }
 
 const styleBlog = StyleSheet.create({
