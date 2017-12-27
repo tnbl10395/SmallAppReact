@@ -1,6 +1,6 @@
 import React from "react";
 import { StackNavigator,TabNavigator } from 'react-navigation';
-import Login from '../src/components/LoginComponent.js';
+import Login from '../src/containers/LoginContainer.js';
 // import Hello from '../components/Hello.js';
 import ModalComment from '../components/ModalComment.js';
 import HomeScreen from '../src/components/HomeComponent.js';
@@ -67,3 +67,4 @@ export const TabBar = TabNavigator(
 TabBar.navigationOptions = {
     title: "Tab"
 };
+

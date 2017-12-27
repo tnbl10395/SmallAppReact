@@ -6,9 +6,11 @@ TextInput,
 TouchableNativeFeedback,
 Image, 
 Animated, 
-StatusBar
+StatusBar,
+Alert
 } from "react-native";
 import StyleLogin from '../Style/StyleLoginComponent.js';
+import { login } from '../actions/LoginAction.js';
 
 export default class Login extends Component{
 
@@ -18,6 +20,7 @@ export default class Login extends Component{
             fadeAnim: new Animated.Value(0),
             username: '',
             password: '',
+            checkAuth: false,
             error:'',
         }
     }
@@ -30,21 +33,33 @@ export default class Login extends Component{
                 duration:2000,
             }
         ).start();
+
     }
 
     login(){
-        // if(this.state.username==user&&this.state.password==pass){
-        //     this.props.navigation.navigate(
-        //         'HomeScreen',
-        //         {
-        //             name: this.state.username
-        //         }
-        //     );
-        // }else{
+        this.props.onLogin(this.state.username,this.state.password);     
+        if(this.props.auth===true){
+            this.nav(); 
+        }
+        // if(this.props.auth.checkAuth){
+            // if(this.props.auth.checkAuth){
+                // this.props.navigation.navigate(
+                    // 'HomeScreen',
+                // );
+            // }           
+
+        // }
+        // else{
         //     this.setState({
         //         error: 'Username or password is uncorrectly!'
         //     });
         // }
+    }
+
+    nav(){
+        this.props.navigation.navigate(
+            'HomeScreen',
+        );
     }
 
     render(){
@@ -76,10 +91,10 @@ export default class Login extends Component{
                         onChangeText={(password)=>{this.setState({password})}}
                         Value={this.state.password}
                     ></TextInput>
-                    <Text style={StyleLogin.error}>{this.state.error}</Text>
+                    <Text style={StyleLogin.error}>{this.state.checkAuth},{this.state.error}</Text>
                     <TouchableNativeFeedback
-                        // onPress={()=>{this.props.navigation.navigate('HelloScreen')}}
-                        onPress={()=>{this.login()}}
+                        // onPress={()=>this.props.navigation.navigate('HomeScreen')}
+                        onPress={()=>this.login()}
                         background={TouchableNativeFeedback.SelectableBackground()}>
                         <View style={StyleLogin.touchView}>
                             <Text style={StyleLogin.touchText}>Login</Text>
@@ -95,4 +110,10 @@ export default class Login extends Component{
     }
 }
 
+// const mapStateToProps = (state) => {
+//     return{
+//         checkAuth: state.success
+//     } 
+// }
 
+// export default connect()(Login);

@@ -1,8 +1,10 @@
-const LOGIN = 'LOGIN';
+import { LOGIN } from '../actions/TypeAction.js'
 
-const login = () => {
+export const login = (username,password) => {
     return {
-        type: LOGIN
+        type: LOGIN,
+        username,
+        password,
     }
 }
-export default login;
+// export default login;
