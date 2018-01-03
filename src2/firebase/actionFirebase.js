@@ -18,6 +18,12 @@ export const registered = (email,password,dispatch,register) => {
         dispatch( register(checkRegister) );
     })
     .catch((error)=>{
-        alert(error)
+        alert(error);
     });
+}
+
+export const loadListMovies = (dispatch,getData) => {
+    firebaseApp.database().ref('Movies').on('value',function(snapshot){
+        dispatch(getData(snapshot.val()))
+    })
 }

@@ -11,6 +11,7 @@ export default class ListComponent extends React.Component{
         this.state = {
             array: [],
         }
+        console.ignoredYellowBox = ['Setting a timer']; // use close warning alert
     }
 
     componentDidMount(){
@@ -29,7 +30,7 @@ export default class ListComponent extends React.Component{
                 />
                 <FlatList
                     data={this.props.data}
-                    keyExtractor={(item,index)=>item.locationID}
+                    keyExtractor={(item,index)=>item.id}
                     renderItem={({item})=> renderItem(item)
                     }
 
@@ -42,10 +43,10 @@ export default class ListComponent extends React.Component{
 }
 
 const renderItem = (item) => (
-    <TouchableOpacity key={item.locationID}>
+    <TouchableOpacity key={item.id}>
         <View style={{width:'100%', backgroundColor:'gray'}}>
-            <Text>{item.locationID}</Text>
-            <Text>{item.districtName}</Text>
+            <Text>{item.title}</Text>
+            <Text>{item.content}</Text>
         </View>
     </TouchableOpacity>
 )
