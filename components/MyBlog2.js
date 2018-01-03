@@ -17,9 +17,9 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 // import Entypo from 'react-native-vector-icons/Entypo';
 
 export default class Myblog extends React.Component{
-    static navigationOptions = {
-        tabBarLabel:'My Blog',
-    }
+    // static navigationOptions = {
+    //     tabBarLabel:'My Blog',
+    // }
 
     constructor(props){
         super(props);

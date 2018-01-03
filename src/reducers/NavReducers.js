@@ -1,7 +1,9 @@
-import App from '../Route.js';
-import { addNavigationHelpers } from 'react-navigation';
+// import App from '../Route.js';
+// import { NavigationActions } from 'react-navigation'
 
-export const navReducers = (state,action) => {
-    const newState = App.router.getStateForAction(action,state);
-    return newState || state;
-}
+// const initialState = App.router.getStateForAction(NavigationActions.init());
+
+// export const navReducers = (state = initialState,action) => {
+//     const newState = App.router.getStateForAction(action,state);
+//     return newState || state;
+// }

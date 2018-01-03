@@ -1,4 +1,6 @@
 import { LOGIN } from '../actions/TypeAction.js';
+import { AppNavigator } from '../Route.js';
+import { NavigationActions } from 'react-navigation';
 
 const appState = { 
     username:'lewis',
@@ -9,18 +11,21 @@ const defaultState = {
     username: '',
     password: ''
 };
-export const loginReducers =  (state = defaultState, action) => {
-    switch(action.type){
+
+const initialNavState = AppNavigator.router.getStateForAction(NavigationActions.init());
+
+export const loginReducers = (state = initialNavState, action) => {
+    let nextState;
+    switch (action.type) {
         case LOGIN:
-            if(appState.username===action.username && appState.password===action.password){
-                return { 
-                    checkAuth: true,
-                    username: action.username,
-                    password: action.password
-                };
-            } 
+            nextState = AppNavigator.router.getStateForAction(
+            NavigationActions.back(),
+            state
+            );
+            break;
         default:
-        return state;
+            nextState = AppNavigator.router.getStateForAction(action, state);
+            break;
     }
-    
+    return nextState || state;   
 }

@@ -1,26 +1,33 @@
-import React, { Component } from 'react';
-import { createStore } from 'redux';
-import { Provider } from 'react-redux';
-import App from './Route.js';
-import rootReducer from './Reducer.js';
-import { addNavigationHelpers } from 'react-navigation';
-import { navReducers } from './reducers/NavReducers.js'
+// import React, { Component } from 'react';
+// import { createStore } from 'redux';
+// import { Provider,connect } from 'react-redux';
+// import App from './Route.js';
+// import rootReducer from './Reducer.js';
+// import { addNavigationHelpers } from 'react-navigation';
+// import AppWithNavigationState from './Route';
 
-const store = createStore(rootReducer);
+// const Appli = ({dispatch,nav}) =>(
+//     <App
+//         navigation={addNavigationHelpers({
+//             dispatch,
+//             state:nav
+//         })}
+//     />
+// );
 
-export default class Index extends React.Component{
+// const mapStateToProps = state=>({
+//     nav: state.nav
+// });
 
-    render(){
-        return(
-            <Provider store={store}>
-                <App
-                    // navigation={this.props.navigation}
-                    // navigation={addNavigationHelpers({
-                    //     dispatch: this.props.dispatch,
-                    //     state: this.props.rootReducer
-                    // })}
-                />
-            </Provider>
-        );
-    }
-}
+// const AppWithNavigation = connect(mapStateToProps)(Appli);
+
+// export default class Index extends React.Component{
+//     render(){
+//         const store = createStore(rootReducer);
+//         return(
+//             <Provider store={store}>
+//                 <AppWithNavigationState/>
+//             </Provider>
+//         );
+//     }
+// }

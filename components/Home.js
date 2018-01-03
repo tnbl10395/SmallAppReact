@@ -15,11 +15,11 @@ import TabBar from '../components/Tabbar.js';
 import Icon from 'react-native-vector-icons/FontAwesome';
 export default class Home extends React.Component{
 
-    constructor(props){
-        super(props);
-        this.state = {
-        }
-    }
+    // constructor(props){
+    //     super(props);
+    //     this.state = {
+    //     }
+    // }
 
 
     render(){

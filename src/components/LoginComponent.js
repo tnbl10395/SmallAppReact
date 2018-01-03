@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import PropTypes from 'prop-types';
 import { 
 View, 
 Text,  
@@ -36,32 +37,6 @@ export default class Login extends Component{
 
     }
 
-    login(){
-        this.props.onLogin(this.state.username,this.state.password);     
-        if(this.props.auth===true){
-            this.nav(); 
-        }
-        // if(this.props.auth.checkAuth){
-            // if(this.props.auth.checkAuth){
-                // this.props.navigation.navigate(
-                    // 'HomeScreen',
-                // );
-            // }           
-
-        // }
-        // else{
-        //     this.setState({
-        //         error: 'Username or password is uncorrectly!'
-        //     });
-        // }
-    }
-
-    nav(){
-        this.props.navigation.navigate(
-            'HomeScreen',
-        );
-    }
-
     render(){
         return(
             <View style={StyleLogin.body}>
@@ -94,7 +69,7 @@ export default class Login extends Component{
                     <Text style={StyleLogin.error}>{this.state.checkAuth},{this.state.error}</Text>
                     <TouchableNativeFeedback
                         // onPress={()=>this.props.navigation.navigate('HomeScreen')}
-                        onPress={()=>this.login()}
+                        onPress={()=>this.props.onLogin()}
                         background={TouchableNativeFeedback.SelectableBackground()}>
                         <View style={StyleLogin.touchView}>
                             <Text style={StyleLogin.touchText}>Login</Text>
@@ -109,11 +84,10 @@ export default class Login extends Component{
         );
     }
 }
+Login.propTypes = {
+    navigation: PropTypes.object.isRequired,
+  };
 
-// const mapStateToProps = (state) => {
-//     return{
-//         checkAuth: state.success
-//     } 
-// }
-
-// export default connect()(Login);
+Login.navigationOptions = {
+    title: 'Log In',
+  };
