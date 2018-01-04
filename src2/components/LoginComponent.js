@@ -1,5 +1,5 @@
 import React,{ Component } from 'react';
-import { View, TextInput,Text, Button, TouchableHighlight, TouchableOpacity, Image } from 'react-native';
+import { View, TextInput,Text, Button, TouchableHighlight, TouchableOpacity, Image, StatusBar } from 'react-native';
 import { LoginStyle } from '../style/style';
 export default class LoginComponent extends React.Component{
     constructor(props){
@@ -12,6 +12,10 @@ export default class LoginComponent extends React.Component{
     render(){
         return(
             <View style={LoginStyle.body}>
+                <StatusBar
+                    barStyle="light-content"
+                    backgroundColor="black"
+                />
                 <View style={LoginStyle.child0}></View>
                 <View style={LoginStyle.child1}>
                     <Image source={require('../images/images.png')} style={LoginStyle.image}/>

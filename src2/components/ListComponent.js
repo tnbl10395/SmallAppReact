@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, Button, FlatList, ActivityIndicator, TouchableOpacity } from 'react-native';
+import { listStyle } from '../style/style';
 
 export default class ListComponent extends React.Component{
     static navigationOptions = {
@@ -10,6 +11,7 @@ export default class ListComponent extends React.Component{
         super(props);
         this.state = {
             array: [],
+            modal: false,
         }
         console.ignoredYellowBox = ['Setting a timer']; // use close warning alert
     }
@@ -18,7 +20,14 @@ export default class ListComponent extends React.Component{
         this.props.onLoad();
     }
 
+    openModal(id){
+        this.setState({
+            modal: true
+        });
+    }
     render () {
+        // const {modal} = this.state;
+        // const modals = modal ? <jdjs></jdjs>
         return (
             <View style={{flex:1}}>
                 <Text>List Component</Text> 
@@ -31,22 +40,28 @@ export default class ListComponent extends React.Component{
                 <FlatList
                     data={this.props.data}
                     keyExtractor={(item,index)=>item.id}
-                    renderItem={({item})=> renderItem(item)
+                    renderItem={({item})=> renderItem(item,this.openModal.bind(this))
                     }
-
-                   
                 />
+                <View style={this.state.modal ? listStyle.openViewOpacity : listStyle.closeViewOpacity}/>
             </View>
-        
         );
     }
 }
 
-const renderItem = (item) => (
-    <TouchableOpacity key={item.id}>
-        <View style={{width:'100%', backgroundColor:'gray'}}>
-            <Text>{item.title}</Text>
-            <Text>{item.content}</Text>
-        </View>
-    </TouchableOpacity>
+
+const renderItem = (item, openModal) => (
+    <View>
+        <TouchableOpacity key={item.id}
+            onPress={()=>openModal(item.id)}
+        >
+            <View style={{width:'100%', backgroundColor:'gray'}}>
+                <Text>{item.title}</Text>
+                <Text>{item.content}</Text>
+            </View>
+        </TouchableOpacity>
+        {/* <View>
+            <Text>{item.id}</Text>
+        </View> */}
+    </View>
 )

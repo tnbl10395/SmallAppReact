@@ -1,4 +1,4 @@
-import { GO_HOME, GO_LOGIN, REGISTER, GO_REGISTER, LOGIN } from '../actions/TypeActions';
+import { GO_HOME, GO_LOGIN, REGISTER, GO_REGISTER, LOGIN, OPEN_MODAL } from '../actions/TypeActions';
 import { AppNavigator } from '../route/Route';
 import { NavigationActions } from 'react-navigation';
 
@@ -45,9 +45,13 @@ const nav = (state = initialState, action) => {
                 nexState = AppNavigator.router.getStateForAction(
                     NavigationActions.navigate({routeName:'Home'}),
                 );
-            }else {
-                alert('Please check email or password again!')                
             }
+            break;
+
+        case OPEN_MODAL: 
+            nexState = AppNavigator.router.getStateForAction(
+                NavigationActions.navigate({routeName:'Modal'}),
+            );
             break;
         }
 

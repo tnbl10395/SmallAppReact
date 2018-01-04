@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import ListComponent from '../components/ListComponent';
-import { loadData,getData } from '../actions/LoadDataAction';
+import { loadData,getData, openModal } from '../actions/LoadDataAction';
 import { loadListMovies } from '../firebase/actionFirebase';
 
 const mapStateToProps = state => ({
@@ -14,6 +14,9 @@ const mapDispatchToProps = dispatch => ({
         // load(dispatch)
         loadListMovies(dispatch,getData) 
     }, 
+    openModal: () => {
+        dispatch( openModal() )
+    }
      
 });
 

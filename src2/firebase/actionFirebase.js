@@ -7,7 +7,7 @@ export const logined = (email,password, dispatch, login) => {
         dispatch( login(checkAuth) );
     })
     .catch((error) => {
-        alert(error);
+        alert('Please check email or password again!');
     });
 }
 

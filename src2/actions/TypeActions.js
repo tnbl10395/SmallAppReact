@@ -5,3 +5,4 @@ export const GET_DATA = 'GET_DATA';
 export const GO_REGISTER = 'GO_REGISTER';
 export const REGISTER = 'REGISTER';
 export const LOGIN = 'LOGIN';
+export const OPEN_MODAL = 'OPEN_MODAL';

@@ -6,6 +6,7 @@ import HomeContainer from '../containers/HomeContainer';
 import ListContainer from '../containers/ListContainer';
 import FavoriteContainer from '../containers/FavoriteContainer';
 import RegisterContainer from '../containers/RegisterContainer';
+import ModalContainer from '../containers/ModalContainer';
 
 export const AppNavigator = StackNavigator({
     Login: {
@@ -24,6 +25,22 @@ export const AppNavigator = StackNavigator({
         screen: RegisterContainer,
         navigationOptions:{
             header: null
+        }
+    },
+    Modal: {
+        screen: ModalContainer,
+        navigationOptions:{
+            header:null
+        },
+        mode:{
+            card:true,
+        },
+        headerMode:{
+            screen: true
+        },
+        cardStyle: {
+            backgroundColor:"transparent",
+            opacity:0.99
         }
     }
 });

@@ -1,4 +1,4 @@
-import { LOAD_DATA,GET_DATA } from '../actions/TypeActions';
+import { LOAD_DATA,GET_DATA, OPEN_MODAL } from '../actions/TypeActions';
 
 export const loadData = () => {
     return {
@@ -10,5 +10,11 @@ export const getData = (data) => {
     return {
         type: GET_DATA,
         data,
+    }
+}
+
+export const openModal = () => {
+    return {
+        type: OPEN_MODAL,
     }
 }
