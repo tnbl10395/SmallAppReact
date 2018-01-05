@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Button, FlatList, ActivityIndicator, TouchableOpacity } from 'react-native';
+import { View, Text, Button, FlatList, ActivityIndicator, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
 import { listStyle } from '../style/style';
 
 export default class ListComponent extends React.Component{
@@ -12,6 +12,8 @@ export default class ListComponent extends React.Component{
         this.state = {
             array: [],
             modal: false,
+            question: '',
+            answer:''
         }
         console.ignoredYellowBox = ['Setting a timer']; // use close warning alert
     }
@@ -20,10 +22,19 @@ export default class ListComponent extends React.Component{
         this.props.onLoad();
     }
 
-    openModal(id){
+    openModal(title){
         this.setState({
-            modal: true
+            modal: true,
+            question:'Would you like to add "'+title+'" into your favorite movies?',
+            answer:'Yes'
         });
+    }
+    closeModal(){
+        this.setState({
+            modal:false,
+            question:'',
+            answer:''
+        })
     }
     render () {
         // const {modal} = this.state;
@@ -43,25 +54,36 @@ export default class ListComponent extends React.Component{
                     renderItem={({item})=> renderItem(item,this.openModal.bind(this))
                     }
                 />
-                <View style={this.state.modal ? listStyle.openViewOpacity : listStyle.closeViewOpacity}/>
+                <TouchableWithoutFeedback
+                    onPress={()=>this.closeModal()}
+                >
+                    <View style={this.state.modal ? listStyle.openViewOpacity : listStyle.closeViewOpacity}/>
+                </TouchableWithoutFeedback>
+                <View style={this.state.modal ? listStyle.openViewModal : listStyle.closeViewModal}>
+                    <Text style={listStyle.textModal}>
+                       {this.state.question}
+                    </Text>
+                    <TouchableOpacity
+                        onPress={()=>this.props.addFavorite()}
+                    >
+                        <Text style={[listStyle.textModal,{fontWeight:'bold'}]}>{this.state.answer}</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
         );
     }
 }
 
 
-const renderItem = (item, openModal) => (
+const renderItem = (item, openModal ) => (
     <View>
         <TouchableOpacity key={item.id}
-            onPress={()=>openModal(item.id)}
+            onPress={()=>openModal(item.title)}
         >
-            <View style={{width:'100%', backgroundColor:'gray'}}>
-                <Text>{item.title}</Text>
-                <Text>{item.content}</Text>
+            <View style={listStyle.viewList}>
+                <Text style={listStyle.textList}>{item.title}</Text>
+                <Text style={listStyle.textList}>{item.content}</Text>
             </View>
         </TouchableOpacity>
-        {/* <View>
-            <Text>{item.id}</Text>
-        </View> */}
     </View>
 )

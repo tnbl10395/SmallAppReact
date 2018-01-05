@@ -1,4 +1,5 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
+const {width,height} = Dimensions.get('window');
 
 export const LoginStyle = StyleSheet.create({
     body: {
@@ -58,7 +59,28 @@ export const listStyle = StyleSheet.create({
         backgroundColor:'black',
         opacity:0.7
     },
-    closeViewOpacity: {
-        
+    closeViewOpacity: {},
+    openViewModal: {
+        position: 'absolute',
+        top: height*0.3,
+        left:width*0.2 ,
+        right:width*0.2,
+        width:width*0.6,
+        // height:100,
+        borderRadius: 20,
+        backgroundColor:'white',
+    },
+    closeViewModal: {},
+    textModal: {
+        padding:10,
+        textAlign:'center'
+    },
+    viewList: {
+        backgroundColor: 'white',
+        width:'100%',
+        marginTop: 3,
+    },
+    textList: {
+        padding: 5
     }
 });

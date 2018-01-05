@@ -5,7 +5,7 @@ import { NavigationActions } from 'react-navigation';
 const firstScreen = AppNavigator.router.getActionForPathAndParams('Login');
 const secondScreen = AppNavigator.router.getActionForPathAndParams('Home');
 const initialState = AppNavigator.router.getStateForAction(
-    firstScreen,
+    secondScreen,
     // AppNavigator.router.getStateForAction(secondScreen)
 );
 

@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import ListComponent from '../components/ListComponent';
-import { loadData,getData, openModal } from '../actions/LoadDataAction';
-import { loadListMovies } from '../firebase/actionFirebase';
+import { getFavorite,getData} from '../actions/LoadDataAction';
+import { loadListMovies, addFavoriteMovies } from '../firebase/actionFirebase';
 
 const mapStateToProps = state => ({
     data: state.LoadDataReducer.data,
@@ -14,8 +14,8 @@ const mapDispatchToProps = dispatch => ({
         // load(dispatch)
         loadListMovies(dispatch,getData) 
     }, 
-    openModal: () => {
-        dispatch( openModal() )
+    addFavorite: (id,movieID,userID) => {
+        addFavoriteMovies(dispatch,getFavorite,id,movieID,userID)
     }
      
 });
