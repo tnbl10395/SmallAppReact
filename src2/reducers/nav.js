@@ -2,10 +2,10 @@ import { GO_HOME, GO_LOGIN, REGISTER, GO_REGISTER, LOGIN, OPEN_MODAL } from '../
 import { AppNavigator } from '../route/Route';
 import { NavigationActions } from 'react-navigation';
 
-const firstScreen = AppNavigator.router.getActionForPathAndParams('Login');
-const secondScreen = AppNavigator.router.getActionForPathAndParams('Home');
+const firstScreen = AppNavigator.router.getActionForPathAndParams('Home');
+const secondScreen = AppNavigator.router.getActionForPathAndParams('Register');
 const initialState = AppNavigator.router.getStateForAction(
-    secondScreen,
+    firstScreen,
     // AppNavigator.router.getStateForAction(secondScreen)
 );
 

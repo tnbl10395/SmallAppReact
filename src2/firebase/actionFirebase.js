@@ -22,26 +22,51 @@ export const registered = (email,password,dispatch,register) => {
     });
 }
 
-export const loadListMovies = (dispatch,getData) => {
-    firebaseApp.database().ref('Movies').on('value',function(snapshot){
-        dispatch(getData(snapshot.val()))
+export const loadListTodo = (dispatch,getData,userId) => {
+    firebaseApp.database().ref('Todo').child(userId).child('List').on('value',function(snapshot){
+        let listTodo = [];
+        let value = snapshot.val();
+        for(var k in value ){
+            listTodo.push(value[k]);            
+        }
+        dispatch(getData(listTodo))
     })
 }
 
-export const loadListFavorite = (dispatch,getFavorite,userId) => {
-    firebaseApp.database().ref('favorite/'+userId).on('value',function(snapshot){
-        alert(snapshot.val())
-        dispatch(getFavorite(snapshot.val()))
+export const loadListInprogress = (dispatch,getInprogress,userId) => {
+    firebaseApp.database().ref('InProgress/'+userId).child('List').on('value',function(snapshot){
+        let listInprogress = [];
+        let value = snapshot.val();
+        for(var k in value ){
+            listInprogress.push(value[k]);            
+        }
+        dispatch(getInprogress(listInprogress))
     })
 }
 
-export const addFavoriteMovies = (dispatch, addFavorite, id, movieID, userID) => {
-    firebaseApp.database().ref('favorite').set({
+export const addListTodo = (dispatch, addTodo, title, content, userId) => {
+    let key = firebaseApp.database().ref('Todo').child(userId).child('List').push({
+        id:'',
+        title:title,
+        content:content
+    }).getKey();
+        firebaseApp.database().ref('Todo').child(userId).child('List/'+key).update({
+            id:key
+        })
+    .then(()=>{
+        dispatch(addTodo())
+    })
+}
+
+export const moveTaskToInProgress = (dispatch, moveInProgress, id, title, content, userID) => {
+    firebaseApp.database().ref('InProgress').child(userID).child('List/'+id).set({
         id:id,
-        movieID:movieID,
-        userID:userID
+        title:title,
+        content:content
     }).then(()=>{
-        dispatch(addFavorite())
+        firebaseApp.database().ref('Todo').child(userID).child('List/'+id).remove()
+    }).then(()=>{
+        dispatch(moveInProgress())
     })
     
 }

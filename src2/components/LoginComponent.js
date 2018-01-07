@@ -16,9 +16,9 @@ export default class LoginComponent extends React.Component{
                     barStyle="light-content"
                     backgroundColor="black"
                 />
-                <View style={LoginStyle.child0}></View>
+                <View style={LoginStyle.child0}/>
                 <View style={LoginStyle.child1}>
-                    <Image source={require('../images/images.png')} style={LoginStyle.image}/>
+                    <Image source={require('../images/logo.png')} style={LoginStyle.image}/>
                 </View>
                 <View style={LoginStyle.child2}>
                     <TextInput
@@ -33,19 +33,22 @@ export default class LoginComponent extends React.Component{
                         onChangeText={(password)=>{this.setState({password})}}
                         
                     />
-                    <TouchableHighlight
-                        onPress={()=>this.props.login(this.state.email,this.state.password)}
-                    >
-                        <View style={LoginStyle.viewLoginTouch}>
-                            <Text style={LoginStyle.textLoginTouch}>LOGIN</Text>
-                        </View>
-                    </TouchableHighlight>
-                    <TouchableOpacity
-                        onPress={()=>this.props.goRegister()}
-                    >
-
-                            <Text style={LoginStyle.textRegisterTouch}>Create a new account?</Text>
-                    </TouchableOpacity>
+                </View>
+                <View style={LoginStyle.child3}>
+                        <TouchableOpacity
+                            onPress={()=>this.props.login(this.state.email,this.state.password)}
+                        >
+                            <View style={LoginStyle.viewLoginTouch}>
+                                <Text style={LoginStyle.textLoginTouch}>LOGIN</Text>
+                            </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            onPress={()=>this.props.goRegister()}
+                        >
+                            <View style={LoginStyle.viewLoginTouch}>
+                                <Text style={LoginStyle.textLoginTouch}>Register</Text>
+                            </View>
+                        </TouchableOpacity>
                 </View>
             </View>
         );

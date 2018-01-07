@@ -1,10 +1,10 @@
 import { combineReducers } from "redux";
 import nav from '../reducers/nav';
-import LoadDataReducer from '../reducers/LoadDataReducer';
-import LoadFavoriteReducer from '../reducers/LoadFavoriteReducer';
+import TodoReducer from '../reducers/TodoReducer';
+import InprogressReducer from '../reducers/InprogressReducer';
 
 export default rootReducers = combineReducers({
     nav,
-    LoadDataReducer,
-    LoadFavoriteReducer
+    TodoReducer,
+    InprogressReducer
 });

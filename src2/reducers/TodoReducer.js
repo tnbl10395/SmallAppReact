@@ -1,26 +1,26 @@
-import { GET_FAVORITE, ADD_FAVORITE } from '../actions/TypeActions';
+import { GET_TODO, ADD_TODO } from '../actions/TypeActions';
 
-const initialStates = {
+const initialState = {
     data: [],
     successfully:true,
     heightAI: 20,
 }
 
-const LoadFavoriteReducer = (state = initialStates , action) => {
+const TodoReducer = (state = initialState , action) => {
     switch (action.type) {
-        case GET_FAVORITE:
+        case ADD_TODO:
+            return state;
+        case GET_TODO:
             return {
                 ...state,
                 data: action.data,
                 successfully:false,
                 heightAI:0           
             }
-        // case ADD_FAVORITE:
-        //     return state
         default:
             return state;
     }
     return state
 }
 
-export default LoadFavoriteReducer;
+export default TodoReducer;

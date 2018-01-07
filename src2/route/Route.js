@@ -3,8 +3,8 @@ import { StackNavigator, addNavigationHelpers, TabNavigator } from 'react-naviga
 import { connect } from 'react-redux';
 import LoginContainer from '../containers/LoginContainer';
 import HomeContainer from '../containers/HomeContainer';
-import ListContainer from '../containers/ListContainer';
-import FavoriteContainer from '../containers/FavoriteContainer';
+import TodoContainer from '../containers/TodoContainer';
+import InProgressContainer from '../containers/InProgressContainer';
 import RegisterContainer from '../containers/RegisterContainer';
 import ModalContainer from '../containers/ModalContainer';
 
@@ -47,11 +47,27 @@ export const AppNavigator = StackNavigator({
 
 export const Tabbar = TabNavigator(
     {
-        List: {
-            screen: ListContainer
+        Todo: {
+            screen: TodoContainer
         },
-        Favorite: {
-            screen: FavoriteContainer
+        Inprogress: {
+            screen: InProgressContainer
+        }
+    },
+    {
+        tabBarPosition:'top',        
+        animationEnabled:true,
+        tabBarOptions:{
+            activeBackgroundColor:'#4CAF50',
+            activeTintColor:'white',
+            upperCaseLabel:false,
+            labelStyle:{
+                fontSize:15,
+                fontWeight:'bold',
+            },
+            style:{
+                backgroundColor:'#4CAF50'
+            },
         }
     }
 );
