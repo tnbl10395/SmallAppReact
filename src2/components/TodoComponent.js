@@ -31,7 +31,7 @@ export default class TodoComponent extends React.Component{
     openModal (id,title,content) {
         this.setState({
             modal: true,
-            question:'Would you like to add "'+title+'" into your favorite movies?',
+            question:'Would you like to move "'+title+'" to Done-list?',
             answer:'Yes',
             id:id,
             title:title,
@@ -61,7 +61,7 @@ export default class TodoComponent extends React.Component{
     }
 
     moveTask () {
-        this.props.moveTaskInProgress(this.state.id,this.state.title,this.state.content,'7AP0NQpM7SfKzHaMPzUTSJJj9Y42');
+        this.props.moveTaskDone(this.state.id,this.state.title,this.state.content,'7AP0NQpM7SfKzHaMPzUTSJJj9Y42');
         this.closeModal();
     }
 
@@ -88,13 +88,16 @@ export default class TodoComponent extends React.Component{
                     }
                 />
                 {/* toggle */}
-                <TouchableOpacity
+                {/* <TouchableOpacity
+                    style={{position:'absolute'}}
                     onPress={()=>this.openModalAdd()}
-                >
+                > */}
                     <View style={listStyle.viewToggle}>
-                        <Text style={listStyle.textToggle}>+</Text>
+                        <TouchableOpacity onPress={()=>this.openModalAdd()}>
+                            <Text style={listStyle.textToggle}>+</Text>
+                        </TouchableOpacity>
                     </View>
-                </TouchableOpacity>
+                {/* </TouchableOpacity> */}
                 {/* background opacity */}
                 <TouchableWithoutFeedback
                     onPress={()=>this.closeModal()}
@@ -158,6 +161,9 @@ export default class TodoComponent extends React.Component{
 
 const renderItem = (item, openModal ) => (
     <View>
+        <View slyte={listStyle.}>
+            <Text>08/01/2017</Text>
+        </View>
         <TouchableOpacity key={item.id}
             onPress={()=>openModal(item.id,item.title,item.content)}
         >

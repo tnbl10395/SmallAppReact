@@ -1,7 +1,8 @@
 import React from 'react';
-import { Button, View, Text } from 'react-native';
-import {Tabbar} from '../route/Route';
-
+import { Button, View, Text, Image } from 'react-native';
+import { Tabbar } from '../route/Route';
+import { homeStyle } from '../style/style';
+ 
 class HomeComponent extends React.Component{
     constructor (props) {
         super(props)
@@ -9,8 +10,18 @@ class HomeComponent extends React.Component{
 
     render () {
         return (
-            <View style={{flex:1}}>
-                <Tabbar/>
+            <View style={homeStyle.body}>
+                <View style={homeStyle.info}>
+                    <View style={homeStyle.avatar}>
+                        <Image source={require('../images/logo.png')} style={homeStyle.image}/>
+                    </View>
+                    <View style={homeStyle.profile}>
+                        <Text style={homeStyle.textInfo}>Long (Lewis) N.B. TRAN</Text>
+                    </View>
+                </View>
+                <View style={homeStyle.tab}>
+                    <Tabbar/>
+                </View>
             </View>
         );
     }

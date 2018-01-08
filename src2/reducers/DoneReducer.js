@@ -1,4 +1,4 @@
-import { GET_INPROGRESS, MOVE_INPROGRESS } from '../actions/TypeActions';
+import { MOVE_TASK, GET_DONE, MOVE_DONE } from '../actions/TypeActions';
 
 const initialStates = {
     data: [],
@@ -8,14 +8,16 @@ const initialStates = {
 
 const InprogressReducer = (state = initialStates , action) => {
     switch (action.type) {
-        case GET_INPROGRESS:
+        case GET_DONE:
             return {
                 ...state,
                 data: action.data,
                 successfully:false,
                 heightAI:0           
             }
-        case MOVE_INPROGRESS:
+        case MOVE_DONE:
+            return state
+        case MOVE_TASK:
             return state
         default:
             return state;

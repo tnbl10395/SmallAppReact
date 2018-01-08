@@ -1,4 +1,4 @@
-import { ADD_TODO, GET_TODO } from '../actions/TypeActions';
+import { ADD_TODO, GET_TODO, MOVE_DONE, MOVE_TASK } from '../actions/TypeActions';
 
 export const addTodo = () => {
     return {
@@ -13,3 +13,14 @@ export const getTodo = (data) => {
     }
 }
 
+export const moveTaskDone = () => {
+    return {
+        type: MOVE_DONE,
+    } 
+ }
+
+export const moveTask = () => {
+    return {
+        type: MOVE_TASK,
+    } 
+}

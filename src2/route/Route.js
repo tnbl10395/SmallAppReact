@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import LoginContainer from '../containers/LoginContainer';
 import HomeContainer from '../containers/HomeContainer';
 import TodoContainer from '../containers/TodoContainer';
-import InProgressContainer from '../containers/InProgressContainer';
+import DoneContainer from '../containers/DoneContainer';
 import RegisterContainer from '../containers/RegisterContainer';
 import ModalContainer from '../containers/ModalContainer';
 
@@ -50,9 +50,12 @@ export const Tabbar = TabNavigator(
         Todo: {
             screen: TodoContainer
         },
-        Inprogress: {
-            screen: InProgressContainer
-        }
+        Done: {
+            screen: DoneContainer
+        },
+        // Done: {
+        //     screen: DoneContainer
+        // }
     },
     {
         tabBarPosition:'top',        

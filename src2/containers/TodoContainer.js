@@ -1,8 +1,7 @@
 import { connect } from 'react-redux';
 import TodoComponent from '../components/TodoComponent';
-import { moveTaskInProgress } from '../actions/InProgressAction';
-import { getTodo, addTodo } from '../actions/ToDoAction';
-import { loadListTodo, moveTaskToInProgress, addListTodo } from '../firebase/actionFirebase';
+import { getTodo, addTodo, moveTaskDone } from '../actions/ToDoAction';
+import { loadListTodo, moveTaskToDone, addListTodo } from '../firebase/actionFirebase';
 
 const mapStateToProps = state => ({
     data: state.TodoReducer.data,
@@ -14,8 +13,8 @@ const mapDispatchToProps = dispatch => ({
     onLoad: (userId) => {
         loadListTodo(dispatch,getTodo,userId) 
     }, 
-    moveTaskInProgress: (id,title,content,userID) => {
-        moveTaskToInProgress(dispatch,moveTaskInProgress,id,title,content,userID)
+    moveTaskDone: (id,title,content,userID) => {
+        moveTaskToDone(dispatch,moveTaskDone,id,title,content,userID)
     },
     addTodo: (title,content,userID) => {
         addListTodo(dispatch,addTodo,title,content,userID)

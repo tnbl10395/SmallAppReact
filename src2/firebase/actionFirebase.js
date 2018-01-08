@@ -34,7 +34,7 @@ export const loadListTodo = (dispatch,getData,userId) => {
 }
 
 export const loadListInprogress = (dispatch,getInprogress,userId) => {
-    firebaseApp.database().ref('InProgress/'+userId).child('List').on('value',function(snapshot){
+    firebaseApp.database().ref('Done/'+userId).child('List').on('value',function(snapshot){
         let listInprogress = [];
         let value = snapshot.val();
         for(var k in value ){
@@ -57,16 +57,41 @@ export const addListTodo = (dispatch, addTodo, title, content, userId) => {
         dispatch(addTodo())
     })
 }
-
-export const moveTaskToInProgress = (dispatch, moveInProgress, id, title, content, userID) => {
-    firebaseApp.database().ref('InProgress').child(userID).child('List/'+id).set({
+//move Todo to Done
+export const moveTaskToDone = (dispatch, moveDone, id, title, content, userID) => {
+    firebaseApp.database().ref('Done').child(userID).child('List/'+id).set({
         id:id,
         title:title,
         content:content
     }).then(()=>{
         firebaseApp.database().ref('Todo').child(userID).child('List/'+id).remove()
     }).then(()=>{
-        dispatch(moveInProgress())
+        dispatch(moveDone())
     })
     
 }
+//move InProgress to Todo
+export const moveTaskToTodo = (dispatch,moveTaskTodo,id,title,content,userID) => {
+    firebaseApp.database().ref('Todo').child(userID).child('List/'+id).set({
+        id:id,
+        title:title,
+        content:content
+    }).then(()=>{
+        firebaseApp.database().ref('Done').child(userID).child('List/'+id).remove()
+    }).then(()=>{
+        dispatch(moveTaskTodo())
+    })
+}
+//move InProgress to Done
+
+// export const moveTask = (dispatch,action,id,title,content,userID,currentComponent,newComponent) => {
+//     firebaseApp.database().ref(currentComponent).child(userID).child('List/'+id).set({
+//         id:id,
+//         title:title,
+//         content:content
+//     }).then(()=>{
+//         firebaseApp.database().ref(newComponent).child(userID).child('List/'+id).remove()
+//     }).then(()=>{
+//         dispatch(action())
+//     })
+// }

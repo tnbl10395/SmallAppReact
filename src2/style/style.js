@@ -68,7 +68,7 @@ export const listStyle = StyleSheet.create({
     //modal
     openViewModal: {
         position: 'absolute',
-        top: height*0.3,
+        top: height*0.15,
         left:width*0.2 ,
         right:width*0.2,
         width:width*0.6,
@@ -94,16 +94,18 @@ export const listStyle = StyleSheet.create({
     },
     // toggle
     viewToggle: {
-        width:width*0.15,
-        height:height*0.1,
+        position: 'absolute',
+        bottom:5,
+        width:70,
+        height:70,
         backgroundColor:'#4CAF50',
-        borderRadius:100,
-        left: width*0.8,
+        borderRadius:45,
+        right:5
     },
     textToggle: {
         color: 'white',
         textAlign: 'center',
-        fontSize:40,
+        fontSize:48,
         fontWeight:'bold',
         // top:height*0.01
     },
@@ -114,7 +116,7 @@ export const listStyle = StyleSheet.create({
         left:width*0.1,
         right:width*0.1,
         width:width*0.8,
-        height:height*0.7,
+        height:height*0.5,
         borderRadius: 20,
         backgroundColor:'white',
     },
@@ -144,6 +146,9 @@ export const listStyle = StyleSheet.create({
         textAlign: 'center',
         color: 'white',
         fontWeight: 'bold'
+    },
+    date: {
+        backgroundColor: '#4CAF50',
     }
 });
 
@@ -195,4 +200,40 @@ export const registerStyle = StyleSheet.create({
         marginTop:10,
     }
 
+});
+
+export const homeStyle = StyleSheet.create({
+    body: {
+        flex:1
+    },
+    info: {
+        flex:0.2,
+        backgroundColor:'#4CAF50',
+        borderBottomWidth:0.6,
+        borderBottomColor:'white',
+        flexDirection:'row'
+    },
+    tab: {
+        flex:0.8
+    },
+    avatar: {
+        flex:0.45,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    profile: {
+        flex:0.55
+    },
+    image:{
+        width:100,
+        height:100,
+        borderRadius:100,
+        borderColor:'white'
+    },
+    textInfo: {
+        color: 'white',
+        fontWeight: 'bold',
+        fontSize:18,
+        top: 10,
+    }
 });
