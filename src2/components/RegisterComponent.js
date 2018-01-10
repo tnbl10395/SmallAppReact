@@ -30,6 +30,49 @@ class RegisterComponent extends React.Component {
                             onChangeText={(password)=>{this.setState({password})}}
                             
                         />
+                        {/* <TextInput
+                            value={this.state.password}
+                            placeholder='fullname'
+                            secureTextEntry={true}
+                            onChangeText={(password)=>{this.setState({password})}}
+                            
+                        />
+                        <TextInput
+                            value={this.state.password}
+                            placeholder='phone'
+                            secureTextEntry={true}
+                            onChangeText={(password)=>{this.setState({password})}}
+                            
+                        />
+                        <TextInput
+                            value={this.state.password}
+                            placeholder='address'
+                            secureTextEntry={true}
+                            onChangeText={(password)=>{this.setState({password})}}
+                            
+                        />
+                        <TextInput
+                            value={this.state.password}
+                            placeholder='age'
+                            secureTextEntry={true}
+                            onChangeText={(password)=>{this.setState({password})}}
+                            
+                        />
+                        <TextInput
+                            value={this.state.password}
+                            placeholder='job'
+                            secureTextEntry={true}
+                            onChangeText={(password)=>{this.setState({password})}}
+                            
+                        />
+                        <TextInput
+                            value={this.state.password}
+                            placeholder='facebook'
+                            secureTextEntry={true}
+                            onChangeText={(password)=>{this.setState({password})}}
+                            
+                        />
+                         */}
                     </View>
                     <View style={registerStyle.child02}>
                         <TouchableOpacity

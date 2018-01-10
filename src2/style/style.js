@@ -116,7 +116,7 @@ export const listStyle = StyleSheet.create({
         left:width*0.1,
         right:width*0.1,
         width:width*0.8,
-        height:height*0.5,
+        height:height*0.7,
         borderRadius: 20,
         backgroundColor:'white',
     },
@@ -149,6 +149,9 @@ export const listStyle = StyleSheet.create({
     },
     date: {
         backgroundColor: '#4CAF50',
+        width:'100%',
+        height:10
+                                                                                                                                                                                                                                                                                                                                                                                                                 
     }
 });
 
@@ -207,14 +210,14 @@ export const homeStyle = StyleSheet.create({
         flex:1
     },
     info: {
-        flex:0.2,
+        flex:0.1,
         backgroundColor:'#4CAF50',
         borderBottomWidth:0.6,
         borderBottomColor:'white',
         flexDirection:'row'
     },
     tab: {
-        flex:0.8
+        flex:0.9
     },
     avatar: {
         flex:0.45,
@@ -225,15 +228,15 @@ export const homeStyle = StyleSheet.create({
         flex:0.55
     },
     image:{
-        width:100,
-        height:100,
-        borderRadius:100,
+        width:50,
+        height:50,
+        borderRadius:50,
         borderColor:'white'
     },
     textInfo: {
         color: 'white',
         fontWeight: 'bold',
         fontSize:18,
-        top: 10,
+        top: 15,
     }
 });

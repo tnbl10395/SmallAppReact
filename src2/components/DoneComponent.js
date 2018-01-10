@@ -105,11 +105,14 @@ export default class DoneComponent extends React.Component{
 
 const renderItem = (item, openModal) => (
     <View>
+        {/* <View slyte={listStyle.date}>
+            <Text style={{ fontWeight: 'bold', fontSize: 18 }}>2018-Jan-09</Text>
+        </View> */}
         <TouchableOpacity key={item.id}
             onPress={()=>openModal(item.id,item.title,item.content)}
         >
             <View style={listStyle.viewList}>
-                <Text style={listStyle.textList}>{item.title}</Text>
+                <Text style={[listStyle.textList,{fontWeight:'bold'}]}>{item.title}</Text>
                 <Text style={listStyle.textList}>{item.content}</Text>
             </View>
         </TouchableOpacity>
